@@ -33,7 +33,6 @@ class Home extends Component {
       i += 1
     })
     this.setState({ counters: playerCounters })
-    console.log(this.state.counters)
   }
     
 
@@ -52,7 +51,7 @@ class Home extends Component {
            <Grid>
              <Grid.Row>
              <Grid.Row>
-               
+
              </Grid.Row>
                <Grid.Column width={8}>
                </Grid.Column>
