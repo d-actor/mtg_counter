@@ -8,8 +8,14 @@ import {
   Card,
   Container,
 } from 'semantic-ui-react';
+import axios from 'axios';
 
 class Home extends Component {
+  state = { players: [], loaded: false }
+  
+  componentDidMount() {
+    axios.get('')
+  }
 
   addPlayer = () => {
     console.log('do it')
