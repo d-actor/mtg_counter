@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+@names = ['Dan', 'Kat']
+@i = 0
+
+2.times do |player|
+  Player.create(
+    name: "#{@names[@i]}"
+  )
+  @i += 1
+end
+
+puts "Seeded"

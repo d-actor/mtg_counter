@@ -14,7 +14,7 @@ class Home extends Component {
   state = { players: [], loaded: false }
   
   componentDidMount() {
-    axios.get('/api/player')
+    axios.get('/api/players')
       .then( res => {
         console.log(res.data)
       })

@@ -1,5 +1,4 @@
 class Player < ApplicationRecord
-  # TODO
-  # has_many games
-  # has_many other thiungs?
+  # TODO add stuff
+  # has_msny games, etc.
 end
