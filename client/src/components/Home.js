@@ -14,7 +14,10 @@ class Home extends Component {
   state = { players: [], loaded: false }
   
   componentDidMount() {
-    axios.get('')
+    axios.get('/api/player')
+      .then( res => {
+        console.log(res.data)
+      })
   }
 
   addPlayer = () => {
