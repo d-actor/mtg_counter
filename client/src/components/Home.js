@@ -7,25 +7,63 @@ import {
   Button,
   Card,
   Container,
+  Grid,
 } from 'semantic-ui-react';
 import axios from 'axios';
 
 class Home extends Component {
-  state = { players: [], loaded: false }
+  state = { players: [], counters: [], loaded: false }
   
   componentDidMount() {
     axios.get('/api/players')
-      .then( res => {
-        console.log(res.data)
-      })
+    .then( res => {
+      this.setState({ players: res.data, headers: res.headers})
+      this.setCounters()
+    }).catch( err => {
+      console.log(err)
+    })
   }
+  
+  setCounters = () => {
+    // creates counters variables in local state for each player
+    let playerCounters = []
+    let i = 0
+    this.state.players.map( player => {
+      playerCounters.push(`counter${i}`)
+      i += 1
+    })
+    this.setState({ counters: playerCounters })
+    console.log(this.state.counters)
+  }
+    
 
   addPlayer = () => {
     console.log('do it')
   }
 
   displayPlayers = () => {
-    // TODO
+   return this.state.players.map( player => {
+     return(
+       <Card>
+         <Card.Content>
+           <Card.Header>
+             { player.name }
+           </Card.Header>
+           <Grid>
+             <Grid.Row>
+             <Grid.Row>
+               
+             </Grid.Row>
+               <Grid.Column width={8}>
+               </Grid.Column>
+               <Grid.Column width={8}>
+               </Grid.Column>
+             </Grid.Row>
+           </Grid>
+         </Card.Content>
+       </Card>
+     )
+   })
   }
 
   render() {
