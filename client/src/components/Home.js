@@ -12,7 +12,7 @@ import {
 import axios from 'axios';
 
 class Home extends Component {
-  state = { players: [], counters: [], loaded: false }
+  state = { players: [], counters: { counter1: 20, counter2: 20 }, loaded: false }
   
   componentDidMount() {
     axios.get('/api/players')
@@ -29,40 +29,51 @@ class Home extends Component {
     let playerCounters = []
     let i = 0
     this.state.players.map( player => {
-      playerCounters.push(`counter${i}`)
+      playerCounters.push({hp: 20})
       i += 1
     })
     this.setState({ counters: playerCounters })
+    console.log(this.state.counters)
+    console.log(this.state.players)
   }
     
+  increment = (counter) => {
+    counter += 1
+  }
+
+  decrement = (counter) => {
+    counter -= 1
+  }
 
   addPlayer = () => {
     console.log('do it')
   }
 
   displayPlayers = () => {
-   return this.state.players.map( player => {
-     return(
-       <Card>
-         <Card.Content>
-           <Card.Header>
-             { player.name }
-           </Card.Header>
-           <Grid>
-             <Grid.Row>
-             <Grid.Row>
+  
 
-             </Grid.Row>
-               <Grid.Column width={8}>
-               </Grid.Column>
-               <Grid.Column width={8}>
-               </Grid.Column>
-             </Grid.Row>
-           </Grid>
-         </Card.Content>
-       </Card>
-     )
-   })
+    return this.state.players.map( player => {
+      return(
+        <Card>
+          <Card.Content>
+            <Card.Header>
+             { player.name }
+            </Card.Header>
+            <Grid>
+              <Grid.Row>
+              <Grid.Row>
+
+              </Grid.Row>
+                <Grid.Column width={8}>
+                </Grid.Column>
+                <Grid.Column width={8}>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Card.Content>
+        </Card>
+      )
+    })
   }
 
   render() {
