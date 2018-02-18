@@ -13,75 +13,97 @@ import {
 import axios from 'axios';
 
 class Home extends Component {
-  state = { players: [], counters: { counter1: 20, counter2: 20 }, loaded: false }
+  state = { players: [], counters: {counter1: 20, counter2: 20}, loaded: false }
   
   componentDidMount() {
     axios.get('/api/players')
     .then( res => {
       this.setState({ players: res.data, headers: res.headers})
-      this.setCounters()
+      console.log(this.state.counters)
+      // this.setCounters()
     }).catch( err => {
       console.log(err)
     })
   }
   
-  setCounters = () => {
-    // creates counters variables in local state for each player
-    let playerCounters = []
-    let i = 0
-    this.state.players.map( player => {
-      playerCounters.push({hp: 20})
-      i += 1
-    })
-    this.setState({ counters: playerCounters })
-    console.log(this.state.counters)
-    console.log(this.state.players)
-  }
+  // setCounters = () => {
+  //   // creates counters variables in local state for each player
+  //   let playerCounters = []
+  //   let i = 0
+  //   this.state.players.map( player => {
+  //     playerCounters.push({hp: 20})
+  //     i += 1
+  //   })
+  //   this.setState({ counters: playerCounters })
+  //   console.log(this.state.counters)
+  //   console.log(this.state.players)
+  // }
     
-  increment = (counter) => {
-    counter += 1
+  increment1 = () => {
+    let count = this.state.counters.counter1 += 1
+    this.setState({ counter1: count })
   }
-
-  decrement = (counter) => {
-    counter -= 1
+  
+  decrement1 = () => {
+    let count = this.state.counters.counter1 -= 1
+    this.setState({ counter1: count })
+  }
+  
+  increment2 = () => {
+    let count = this.state.counters.counter2 += 1
+    this.setState({ counter2: count })
+  }
+  
+  decrement2 = () => {
+    let count = this.state.counters.counter2 -= 1
+    this.setState({ counter2: count })
   }
 
   addPlayer = () => {
     console.log('do it')
   }
 
-  displayCounter = () => {
-    // TODO
-  }
+  // TODO
 
-  displayPlayers = () => {
-    return this.state.players.map( player => {
-      return(
-        <Card>
-          <Card.Content>
-            <Card.Header textAlign='center'>
-             { player.name }
-            </Card.Header>
-            <Grid>
-              <Grid.Row textAlign='center'>
-                <Grid.Row>
-                  { this.displayCounter() }
-                </Grid.Row>
-                <Grid.Column width={8}>
-                  <Button color='red' onClick={this.decrement()}>-</Button>
-                </Grid.Column>
-                <Grid.Column width={8}>
-                  <Button color='green' onClick={this.increment()}>+</Button>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Card.Content>
-        </Card>
-      )
-    })
-  }
+  // displayCounter = (player) => {
+  //   let counters = this.state.counters;
+  //   let counter = counters.player
+  //   return(
+  //     <Header as='h1'>{counter}</Header>
+  //   )
+  // }
+
+  // displayPlayers = () => {
+  //   return this.state.players.map( player => {
+  //     return(
+  //       <Card>
+  //         <Card.Content>
+  //           <Card.Header textAlign='center'>
+  //            { player.name }
+  //           </Card.Header>
+  //           <br />
+  //           <Card.Header as='h1' textAlign='center'>
+  //             {this.state.counters.counter1}
+  //           </Card.Header>
+  //           <Grid>
+  //             <Grid.Row textAlign='center'>
+  //               <Grid.Column width={8}>
+  //                 <Button color='red' onClick={decrement(player.id)}>-</Button>
+  //               </Grid.Column>
+  //               <Grid.Column width={8}>
+  //                 <Button color='green' onClick={increment(player.id)}>+</Button>
+  //               </Grid.Column>
+  //             </Grid.Row>
+  //           </Grid>
+  //         </Card.Content>
+  //       </Card>
+  //     )
+  //   })
+  // }
 
   render() {
+    let counter1 = this.state.counters.counter1
+    let counter2 = this.state.counters.counter2
     return (
       <Container>
         <Header style={styles.header} as='h1' textAlign='center'>
@@ -93,7 +115,49 @@ class Home extends Component {
         </Header>
         <Segment basic>
           <Card.Group stackable itemsPerRow={2}>
-            { this.displayPlayers() }
+            {/* { this.displayPlayers() } */}
+            <Card>
+              <Card.Content>
+                <Card.Header textAlign='center'>
+                  Dan
+                </Card.Header>
+                <br />
+                <Card.Header as='h1' textAlign='center'>
+                  { counter1 }
+                </Card.Header>
+                <Grid>
+                  <Grid.Row textAlign='center'>
+                    <Grid.Column width={8}>
+                      <Button color='red' onClick={() => this.decrement1()}>-</Button>
+                    </Grid.Column>
+                    <Grid.Column width={8}>
+                      <Button color='green' onClick={() => this.increment1()}>+</Button>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid>
+              </Card.Content>
+            </Card>
+            <Card>
+              <Card.Content>
+                <Card.Header textAlign='center'>
+                  Kat
+                </Card.Header>
+                <br />
+                <Card.Header as='h1' textAlign='center'>
+                  { counter2 }
+                </Card.Header>
+                <Grid>
+                  <Grid.Row textAlign='center'>
+                    <Grid.Column width={8}>
+                      <Button color='red' onClick={() => this.decrement2()}>-</Button>
+                    </Grid.Column>
+                    <Grid.Column width={8}>
+                      <Button color='green' onClick={() => this.increment2()}>+</Button>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid>
+              </Card.Content>
+            </Card>
           </Card.Group>
         </Segment>
       </Container>
