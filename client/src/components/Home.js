@@ -8,6 +8,7 @@ import {
   Card,
   Container,
   Grid,
+  Segment,
 } from 'semantic-ui-react';
 import axios from 'axios';
 
@@ -49,24 +50,28 @@ class Home extends Component {
     console.log('do it')
   }
 
-  displayPlayers = () => {
-  
+  displayCounter = () => {
+    // TODO
+  }
 
+  displayPlayers = () => {
     return this.state.players.map( player => {
       return(
         <Card>
           <Card.Content>
-            <Card.Header>
+            <Card.Header textAlign='center'>
              { player.name }
             </Card.Header>
             <Grid>
-              <Grid.Row>
-              <Grid.Row>
-
-              </Grid.Row>
+              <Grid.Row textAlign='center'>
+                <Grid.Row>
+                  { this.displayCounter() }
+                </Grid.Row>
                 <Grid.Column width={8}>
+                  <Button color='red' onClick={this.decrement()}>-</Button>
                 </Grid.Column>
                 <Grid.Column width={8}>
+                  <Button color='green' onClick={this.increment()}>+</Button>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
@@ -86,9 +91,11 @@ class Home extends Component {
             <Header style={styles.header} as='h2' textAlign='center'>Add Player</Header>
           </Button>
         </Header>
-        <Card.Group>
-          { this.displayPlayers }
-        </Card.Group>
+        <Segment basic>
+          <Card.Group stackable itemsPerRow={2}>
+            { this.displayPlayers() }
+          </Card.Group>
+        </Segment>
       </Container>
     );
   }
