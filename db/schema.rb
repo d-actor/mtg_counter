@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20180217225739) do
 
   create_table "players", force: :cascade do |t|
     t.string "name"
+    t.integer "hp", default: 20, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
