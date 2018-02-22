@@ -10,7 +10,7 @@ import {
 import axios from 'axios';
 
 class Home extends Component {
-  state = { players: [], counters: {counter1: 20, counter2: 20}, loaded: false }
+  state = { players: [], loaded: false }
   
   componentDidMount() {
     axios.get('/api/players')
@@ -46,9 +46,9 @@ class Home extends Component {
   displayPlayers = () => {
     return this.state.players.map( player => {
     this.increment = () => {
-      player.hp += 1
-      console.log(player.hp)
-      this.setState({ hp: player.hp })    
+      let newHp = player.hp + 1
+      console.log(newHp)
+      this.setState({ hp: newHp })    
     }
     this.decrement = () => {
       player.hp -= 1
