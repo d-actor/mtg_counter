@@ -7,6 +7,7 @@ import {
   Grid,
   Segment,
 } from 'semantic-ui-react';
+import Player from './Player';
 import axios from 'axios';
 
 class Home extends Component {
@@ -35,26 +36,26 @@ class Home extends Component {
     console.log('do it')
   }
 
- // increment = (hp) => {
-  //  hp += 1
-  //}
+  increment = () => {
+    this.state.player.hp += 1
+  //  this.setState({ hp: player.hp })
+  }
   
- // decrement = (hp) => {
- //   hp -= 1 
- // }
+  decrement = () => {
+    this.state.player.hp -= 1
+  //  this.setState({ hp: player.hp })
+  }
 
   displayPlayers = () => {
     return this.state.players.map( player => {
-    this.increment = () => {
-      let newHp = player.hp + 1
-      console.log(newHp)
-      this.setState({ hp: newHp })    
-    }
-    this.decrement = () => {
-      player.hp -= 1
-      console.log(player.hp)
-      this.setState({ hp: player.hp })
-    } 
+   // this.increment = () => {
+   //   player.hp += 1
+   //   this.setState({ hp: player.hp })
+   // }
+   // this.decrement = () => {
+   //   player.hp -= 1
+   //   this.setState({ hp: player.hp })
+   // } 
     return(
         <Card key={player.id}>
           <Card.Content>
