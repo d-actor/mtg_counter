@@ -83,8 +83,6 @@ class Home extends Component {
   }
 
   render() {
-    // let counter1 = this.state.counters.counter1
-    // let counter2 = this.state.counters.counter2
     return (
       <Container>
         <Header style={styles.header} as='h1' textAlign='center'>
@@ -96,7 +94,7 @@ class Home extends Component {
         </Header>
         <Segment basic>
           <Card.Group stackable itemsPerRow={2}>
-            { this.displayPlayers() }
+            <Player />
           </Card.Group>
         </Segment>
       </Container>

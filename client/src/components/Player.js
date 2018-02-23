@@ -10,10 +10,20 @@ import {
   Container,
   Segment,
 } from 'semantic-ui-react';
+import axios from 'axios';
 
 class Player extends React.Component {
   state = { player: {} }
- 
+  
+  componentDidMount() {
+    axios.get('/api/players')
+      .then( res => {
+        this.setState({ player: res.data, headers: res.data})
+      }).catch( err => {
+        console.log(err)
+      })
+  }
+
   increment = () => {
     
     //  this.setState({ player.hp += 1 })
