@@ -2,6 +2,18 @@ import axios from 'axios';
 import { setHeaders } from './headers';
 import { setFlash } from './flash';
 
+export const getPlayers = () => {
+  return(dispatch) => {
+    axios.get('/api/players')
+      .then( res => {
+        dispatch({ type: 'GET_PLAYERS', players: res.data, headers: res.headers  })
+      }).catch( err => {
+        dispatch(setHeaders(err.headers));
+        dispatch(serFlash('Failed to get players', 'red'));  
+    });
+  }
+}
+
 export const addPlayer = (player) => {
   return(dispatch) => {
     axios.post('/api/players', { player })
@@ -42,7 +54,7 @@ export const decrement = (hp, id) => {
   return(dispatch) => {
     axios.post(`/api/players/${id}`, { player })
       .then( res => {
-        dispatch({ type: 'INCREMENT', player: res.data, headers: res.headers  })
+        dispatch({ type: 'DECREMENT', player: res.data, headers: res.headers  })
       }).catch( err => {
         dispatch(setFlash('Failed to decrement', 'red'));
         dispatch(setHeaders(err.headers));
@@ -51,5 +63,19 @@ export const decrement = (hp, id) => {
 }
 
 export const reset = (id) => {
-  // TODO this -- too
+  // TODO  -- this  
 }
+
+export const deletePlayer = (id) => {
+  return(dispatch) => {
+    axios.delete(`/api/players/${id}`)
+      .then( res => {  
+        dispatch({ type: 'DELETE', player: res.data, headers: res.headers  })
+      }).catch( err => {
+        dispatch(setFlash('Failed to delete player', 'red'));
+        dispatch(setHeaders(err.headers));
+    });
+  }
+}
+
+
