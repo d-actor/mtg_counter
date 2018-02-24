@@ -26,15 +26,28 @@ export const getPlayer = (id) => {
   }
 }
 
-export const increment = (hp, id) => {
+export const increment = (player, id) => {
   return(dispatch) => {
-    // TODO -- this
-    axios.post(`/api/players/${id}`)
+    axios.post(`/api/players/${id}`, { player })
+      .then( res => {
+        dispatch({ type: 'INCREMENT', player: res.data, headers: res.headers  })
+      }).catch( err => {
+        dispatch(setFlash('Failed to increment', 'red'));
+        dispatch(setHeaders(err.headers));
+    });
   }
 }
 
 export const decrement = (hp, id) => {
-  // ALSO TODO -- this
+  return(dispatch) => {
+    axios.post(`/api/players/${id}`, { player })
+      .then( res => {
+        dispatch({ type: 'INCREMENT', player: res.data, headers: res.headers  })
+      }).catch( err => {
+        dispatch(setFlash('Failed to decrement', 'red'));
+        dispatch(setHeaders(err.headers));
+    });
+  }
 }
 
 export const reset = (id) => {
