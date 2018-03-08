@@ -13,7 +13,7 @@ import {
 import axios from 'axios';
 
 class Player extends React.Component {
-  state = { hp: 20 }
+  state = { hp: 20, name: '' }
   
  // componentDidMount() {
  //   axios.get('/api/players')
