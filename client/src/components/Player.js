@@ -13,46 +13,44 @@ import {
 import axios from 'axios';
 
 class Player extends React.Component {
-  state = { player: {} }
+  state = { hp: 20 }
   
-  componentDidMount() {
-    axios.get('/api/players')
-      .then( res => {
-        this.setState({ player: res.data, headers: res.data})
-      }).catch( err => {
-        console.log(err)
-      })
-  }
+ // componentDidMount() {
+ //   axios.get('/api/players')
+ //     .then( res => {
+ //       this.setState({ player: res.data, headers: res.data})
+ //     }).catch( err => {
+ //       console.log(err)
+ //     })
+ // }
 
   increment = () => {
-    
-    //  this.setState({ player.hp += 1 })
+    this.setState( (state) => {
+      return { hp: state.hp + 1 }
+    })  
   }
 
   decrement = () => {
-    this.state.player.hp -= 1
-  //  this.setState({ player.hp -= 1 })
+    this.setState( (state) => {
+      return { hp: state.hp - 1 } 
+    })
   }
  
   render() {
-    let player = this.state.player
+    let hp = this.state.hp
     return(
       <Card>
         <Card.Content>
-          <Card.Header textAlign='center'>
-            { player.name }
-          </Card.Header>
-          <br />
           <Card.Header as='h1' textAlign='center'>
-            { player.hp }
+            { hp }
           </Card.Header>
           <Grid>
             <Grid.Row textAlign='center'>
               <Grid.Column width={8}>
-                <Button color='red' onClick={() => player.hp -= 1}>-</Button>
+                <Button color='red' onClick={this.decrement}>-</Button>
               </Grid.Column>
               <Grid.Column width={8}>
-                <Button color='green' onClick={() => player.hp += 1}>+</Button>
+                <Button color='green' onClick={this.increment}>+</Button>
               </Grid.Column>
             </Grid.Row>
           </Grid>

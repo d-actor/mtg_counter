@@ -7,8 +7,9 @@ import {
   Grid,
   Segment,
 } from 'semantic-ui-react';
-import Player from './Player';
+ // import Player from './Player';
 import axios from 'axios';
+import Player from './Player';
 
 class Home extends Component {
   state = { players: [], loaded: false }
@@ -23,39 +24,39 @@ class Home extends Component {
   }
     
  // increment = () => {
-    // let count = this.state.players.counter1 += 1
-    // this.setState({ counter1: count })
+ //   let count = this.state.players.counter1 += 1
+ //   this.setState({ counter1: count })
  // }
-  
+ // 
  // decrement = () => {
-    // let count = this.state.counters.counter1 -= 1
-    // this.setState({ counter1: count })
+ //    let count = this.state.counters.counter1 -= 1
+ //    this.setState({ counter1: count })
  // }
 
   addPlayer = () => {
     console.log('do it')
   }
 
-  increment = () => {
-    this.state.player.hp += 1
-  //  this.setState({ hp: player.hp })
-  }
-  
-  decrement = () => {
-    this.state.player.hp -= 1
-  //  this.setState({ hp: player.hp })
-  }
+ // increment = () => {
+ //   this.state.player.hp += 1
+ // //  this.setState({ hp: player.hp })
+ // }
+ // 
+ // decrement = () => {
+ //   this.state.player.hp -= 1
+ // //  this.setState({ hp: player.hp })
+ // }
 
   displayPlayers = () => {
     return this.state.players.map( player => {
-   // this.increment = () => {
-   //   player.hp += 1
-   //   this.setState({ hp: player.hp })
-   // }
-   // this.decrement = () => {
-   //   player.hp -= 1
-   //   this.setState({ hp: player.hp })
-   // } 
+    this.increment = () => {
+      player.hp += 1
+      this.setState({ hp: player.hp })
+    }
+    this.decrement = () => {
+      player.hp -= 1
+      this.setState({ hp: player.hp })
+    } 
     return(
         <Card key={player.id}>
           <Card.Content>
@@ -94,6 +95,9 @@ class Home extends Component {
         </Header>
         <Segment basic>
           <Card.Group stackable itemsPerRow={2}>
+            <Player />
+            <Player />
+            <Player />
             <Player />
           </Card.Group>
         </Segment>
