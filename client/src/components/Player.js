@@ -35,12 +35,27 @@ class Player extends React.Component {
       return { hp: state.hp - 1 } 
     })
   }
+
+  setName = () => {
+    console.log("did it");
+  }
  
   render() {
-    let hp = this.state.hp
+    let { hp, name } = this.state
     return(
       <Card>
         <Card.Content>
+          <Card.Header as='h2' textAlign='center'>
+            { 
+              name === ''
+                ?
+              <Button onClick={this.setName}>
+                Add Name
+              </Button>
+                :
+              name
+            } 
+          </Card.Header>
           <Card.Header as='h1' textAlign='center'>
             { hp }
           </Card.Header>
