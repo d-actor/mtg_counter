@@ -15,15 +15,6 @@ import axios from 'axios';
 class Player extends React.Component {
   state = { hp: 20, name: '' }
   
- // componentDidMount() {
- //   axios.get('/api/players')
- //     .then( res => {
- //       this.setState({ player: res.data, headers: res.data})
- //     }).catch( err => {
- //       console.log(err)
- //     })
- // }
-
   increment = () => {
     this.setState( (state) => {
       return { hp: state.hp + 1 }
@@ -36,8 +27,9 @@ class Player extends React.Component {
     })
   }
 
-  setName = () => {
-    console.log("did it");
+  handleChange = (e) => {
+    console.log(e)
+    this.setState({ name: e.target.value });
   }
  
   render() {
@@ -46,15 +38,18 @@ class Player extends React.Component {
       <Card>
         <Card.Content>
           <Card.Header as='h2' textAlign='center'>
-            { 
+            {
               name === ''
                 ?
-              <Button onClick={this.setName}>
-                Add Name
-              </Button>
+              <Form onSubmit={this.handleChange}>
+                <Form.Input
+                  name="name"
+                  placeholder="Enter Name"
+                />
+              </Form>
                 :
               name
-            } 
+            }  
           </Card.Header>
           <Card.Header as='h1' textAlign='center'>
             { hp }
