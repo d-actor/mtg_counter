@@ -12,75 +12,24 @@ import axios from 'axios';
 import Player from './Player';
 
 class Home extends Component {
-  state = { players: [], loaded: false }
+  state = { players: 2 };
   
-  componentDidMount() {
-    axios.get('/api/players')
-    .then( res => {
-      this.setState({ players: res.data, headers: res.headers})
-    }).catch( err => {
-      console.log(err)
-    })
-  }
-    
- // increment = () => {
- //   let count = this.state.players.counter1 += 1
- //   this.setState({ counter1: count })
- // }
- // 
- // decrement = () => {
- //    let count = this.state.counters.counter1 -= 1
- //    this.setState({ counter1: count })
- // }
-
-  addPlayer = () => {
-    console.log('do it')
-  }
-
- // increment = () => {
- //   this.state.player.hp += 1
- // //  this.setState({ hp: player.hp })
- // }
- // 
- // decrement = () => {
- //   this.state.player.hp -= 1
- // //  this.setState({ hp: player.hp })
- // }
 
   displayPlayers = () => {
-    return this.state.players.map( player => {
-    this.increment = () => {
-      player.hp += 1
-      this.setState({ hp: player.hp })
-    }
-    this.decrement = () => {
-      player.hp -= 1
-      this.setState({ hp: player.hp })
-    } 
-    return(
-        <Card key={player.id}>
-          <Card.Content>
-            <Card.Header textAlign='center'>
-             { player.name }
-            </Card.Header>
-            <br />
-           <Card.Header as='h1' textAlign='center'>
-            { player.hp }
-            </Card.Header>
-            <Grid>
-              <Grid.Row textAlign='center'>
-                <Grid.Column width={8}>
-                  <Button color='red' onClick={() => this.decrement()}>-</Button>
-                </Grid.Column>
-                <Grid.Column width={8}>
-                  <Button color='green' onClick={() => this.increment()}>+</Button>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Card.Content>
-        </Card>
+    const { players } = this.state;
+    for (let i = 0; i < players; i++) {
+      return(
+        <Player />
       )
-    })
+    } 
+  }
+
+  addPlayer = () => {
+    this.setState( (state) => {
+      return { players: state.players + 1 }
+    });
+    
+   this.displayPlayers;
   }
 
   render() {
@@ -95,8 +44,7 @@ class Home extends Component {
         </Header>
         <Segment basic>
           <Card.Group stackable itemsPerRow={2}>
-            <Player />
-            <Player />
+            { this.displayPlayers }
             <Player />
             <Player />
           </Card.Group>
