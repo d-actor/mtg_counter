@@ -12,16 +12,16 @@ import axios from 'axios';
 import Player from './Player';
 
 class Home extends Component {
-  state = { players: 2 };
+  state = { players: [1, 1] };
   
 
   displayPlayers = () => {
     const { players } = this.state;
-    for (let i = 0; i < players; i++) {
+    return players.map( player => {
       return(
         <Player />
       )
-    } 
+    });
   }
 
   addPlayer = () => {
@@ -45,8 +45,6 @@ class Home extends Component {
         <Segment basic>
           <Card.Group stackable itemsPerRow={2}>
             { this.displayPlayers }
-            <Player />
-            <Player />
           </Card.Group>
         </Segment>
       </Container>
