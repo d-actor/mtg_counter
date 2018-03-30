@@ -39,7 +39,7 @@ class Home extends Component {
           MTG Counter
           <br />
           <Button color='green' onClick={this.addPlayer}>
-            <Header style={styles.header} as='h2' textAlign='center'>Add Player</Header>
+            <Header style={styles.header} as='h2' textAlign='center'>+ Player</Header>
           </Button>
         </Header>
         <Segment basic>
